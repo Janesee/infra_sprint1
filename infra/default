@@ -1,5 +1,4 @@
 server {
-    listen 80;
     server_name 158.160.252.161 testtaskiii.duckdns.org;
 
     location /api/ {
@@ -15,10 +14,16 @@ server {
         index index.html index.htm;
         try_files $uri /index.html;
     }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/kittygram-testtaskiii.duckdns.org/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/kittygram-testtaskiii.duckdns.org/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
 }
 
 server {
-    listen 80;
     server_name 158.160.252.161 kittygram-testtaskiii.duckdns.org;
 
     location /api/ {
@@ -42,4 +47,36 @@ server {
         index index.html index.htm;
         try_files $uri /index.html;
     }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/kittygram-testtaskiii.duckdns.org/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/kittygram-testtaskiii.duckdns.org/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+
+server {
+    if ($host = kittygram-testtaskiii.duckdns.org) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name 158.160.252.161 kittygram-testtaskiii.duckdns.org;
+    return 404; # managed by Certbot
+
+
+}server {
+    if ($host = testtaskiii.duckdns.org) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name 158.160.252.161 testtaskiii.duckdns.org;
+    return 404; # managed by Certbot
+
+
 }
