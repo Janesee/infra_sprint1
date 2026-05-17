@@ -1,0 +1,5 @@
+IP: 158.160.252.161;
+name_taski: http://testtaskiii.duckdns.org;
+name_kittygram: http://kittygram-testtaskiii.duckdns.org;
+login: jane;
+password: Perdidos;
