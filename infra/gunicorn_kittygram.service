@@ -5,6 +5,7 @@ After=network.target
 [Service]
 User=ubuntu
 WorkingDirectory=/home/ubuntu/kittygram/backend
+EnvironmentFile=/home/ubuntu/kittygram/backend/.env
 ExecStart=/home/ubuntu/kittygram/backend/venv/bin/gunicorn --bind 0.0.0.0:8080 kittygram_backend.wsgi
 
 [Install]
